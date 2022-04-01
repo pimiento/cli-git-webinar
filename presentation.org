@@ -84,7 +84,7 @@
    *Дата отсчёта UNIX-эпохи*
 
    #+ATTR_LATEX: :width .5\textwidth
-   [[file:///home/pimiento/yap/thompson_n_ritchi.jpeg]]
+   [[file:thompson_n_ritchi.jpeg]]
 
 * UNIX
 
@@ -218,10 +218,10 @@
   #+END_SRC
 ** Время стать крутыми хакерами!
    #+ATTR_LATEX: :width .35\textwidth
-   [[file:///home/pimiento/yap/matrix.png]]
+   [[file:matrix.png]]
 * UNIX это интересно!
   #+ATTR_LATEX: :width .5\textwidth
-  [[file:///home/pimiento/yap/unix.jpg]]
+  [[file:unix.jpg]]
 * #!/usr/bin/env python
   Шебэнг? Шебанг? Shebang.
 ** hello.py
@@ -255,7 +255,7 @@
   #+END_SRC
 * VI
   Редактор де-факто на всех UNIX-like системах
-  [[file:///home/pimiento/yap/vim.jpg]]
+  [[file:vim.jpg]]
 * VI
   #+BEGIN_CENTER
   __[[https://yandex.ru/images/search?text=vim%20%D0%BC%D0%B5%D0%BC%D1%8B&from=tabbar][МЕМАСИКИ]]__
@@ -264,7 +264,7 @@
   /шпаргалку по Vi/Vim пришлю после вебинара/
 * Linux. При чём тут GIT?
   #+ATTR_LATEX: :width .4\textwidth
-  [[file:///home/pimiento/yap/linux.png]]
+  [[file:linux.png]]
 * GIT
   - [[https://github.com][GitHub]]
   - [[https://bitbucket.org][BitBucket]]
@@ -273,7 +273,7 @@
 * GIT
 ** Время приключений!
    #+ATTR_LATEX: :width .3\textwidth
-  [[file:///home/pimiento/yap/adventure_time.jpg]]
+  [[file:adventure_time.jpg]]
 
 * .gitignore
 ** glob
@@ -318,45 +318,45 @@
 
 * Что внутри .git
   #+ATTR_LATEX: :width .6\textwidth
-  [[file:///home/pimiento/yap/dot_git_1.png]]
+  [[file:dot_git_1.png]]
 * Что внутри .git
   #+ATTR_LATEX: :width .6\textwidth
-  [[file:///home/pimiento/yap/dot_git_2.png]]
+  [[file:dot_git_2.png]]
 * Что внутри .git
   #+ATTR_LATEX: :width .6\textwidth
-  [[file:///home/pimiento/yap/dot_git_3.png]]
+  [[file:dot_git_3.png]]
 * diff
   #+ATTR_LATEX: :width 1\textwidth
-  [[file:///home/pimiento/yap/dot_git_4.png]]
+  [[file:dot_git_4.png]]
 * Commits
-  [[file:///home/pimiento/yap/commits_1.png]]
-* Commits
-  #+ATTR_LATEX: :width .6\textwidth
-  [[file:///home/pimiento/yap/commits_2.png]]
+  [[file:commits_1.png]]
 * Commits
   #+ATTR_LATEX: :width .6\textwidth
-  [[file://home/pimiento/yap/commits_3.png]]
+  [[file:commits_2.png]]
+* Commits
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:commits_3.png]]
 * Совместная разработка
   #+ATTR_LATEX: :width .7\textwidth
- [[file:///home/pimiento/yap/centralized_workflow.png]]
+ [[file:centralized_workflow.png]]
 * Совместная разработка
   #+ATTR_LATEX: :width .4\textwidth
-  [[file:///home/pimiento/yap/small-team-flow.png]]
+  [[file:small-team-flow.png]]
 * Branches
-  [[file:///home/pimiento/yap/branch_1.png]]
+  [[file:branch_1.png]]
 * Merge
   #+ATTR_LATEX: :width .6\textwidth
-  [[file:///home/pimiento/yap/merge_1.png]]
+  [[file:merge_1.png]]
 * Merge
   #+ATTR_LATEX: :width .6\textwidth
-  [[file:///home/pimiento/yap/merge_2.png]]
+  [[file:merge_2.png]]
 * Merge
    #+ATTR_LATEX: :width .8\textwidth
-   [[file:///home/pimiento/yap/workflow.png]]
+   [[file:workflow.png]]
 * Кто виноват?
 ** git blame
    #+ATTR_LATEX: :width .3\textwidth
-  [[file:///home/pimiento/yap/who.jpg]]
+  [[file:who.jpg]]
 * Кто виноват?
 ** git blame
    #+BEGIN_SRC sh :exports code
@@ -374,15 +374,15 @@
   | Рабочий каталог (Working tree) | Песочница                     |
 * git reset
   #+ATTR_LATEX: :width .5\textwidth
-  [[file:///home/pimiento/yap/reset-soft.png]]
+  [[file:reset-soft.png]]
 
 * git reset
   #+ATTR_LATEX: :width .5\textwidth
-  [[file:///home/pimiento/yap/reset-mixed.png]]
+  [[file:reset-mixed.png]]
 
 * git reset
   #+ATTR_LATEX: :width .5\textwidth
-  [[file:///home/pimiento/yap/reset-hard.png]]
+  [[file:reset-hard.png]]
 
 * git checkout
 ** git reset
@@ -410,4 +410,4 @@
 * Спасибо!
 ** Задавайте ваши вопросы
    #+ATTR_LATEX: :width .45\textwidth
-   [[file:///home/pimiento/yap/questions.jpg]]
+   [[file:questions.jpg]]

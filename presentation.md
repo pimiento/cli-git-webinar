@@ -21,7 +21,7 @@ import time
 print(time.time())
 ```
 
-    1648836725.796722
+    1648837050.116224
 
 
 # Timestamp
@@ -39,7 +39,7 @@ print(
 )
 ```
 
-    2022-04-01 18:12:05.841410
+    2022-04-01 18:17:30.158058
 
 
 # Timestamp
@@ -81,7 +81,7 @@ print(
 
 **Дата отсчёта UNIX-эпохи**
 
-![img](/home/pimiento/yap/thompson_n_ritchi.jpeg)
+![img](thompson_n_ritchi.jpeg)
 
 
 # UNIX
@@ -264,12 +264,12 @@ cat /dev/urandom | hexdump -c
 
 ## Время стать крутыми хакерами!
 
-![img](/home/pimiento/yap/matrix.png)
+![img](matrix.png)
 
 
 # UNIX это интересно!
 
-![img](/home/pimiento/yap/unix.jpg)
+![img](unix.jpg)
 
 
 # #!/usr/bin/env python
@@ -324,7 +324,7 @@ scp user@ya.ru:/answers.txt ./
 # VI
 
 Редактор де-факто на всех UNIX-like системах
-![img](/home/pimiento/yap/vim.jpg)
+![img](vim.jpg)
 
 
 # VI
@@ -339,7 +339,7 @@ scp user@ya.ru:/answers.txt ./
 
 # Linux. При чём тут GIT?
 
-![img](/home/pimiento/yap/linux.png)
+![img](linux.png)
 
 
 # GIT
@@ -355,7 +355,7 @@ scp user@ya.ru:/answers.txt ./
 
 ## Время приключений!
 
-![img](/home/pimiento/yap/adventure_time.jpg)
+![img](adventure_time.jpg)
 
 
 # .gitignore
@@ -405,67 +405,67 @@ import glob
 
 # Что внутри .git
 
-![img](/home/pimiento/yap/dot_git_1.png)
+![img](dot_git_1.png)
 
 
 # Что внутри .git
 
-![img](/home/pimiento/yap/dot_git_2.png)
+![img](dot_git_2.png)
 
 
 # Что внутри .git
 
-![img](/home/pimiento/yap/dot_git_3.png)
+![img](dot_git_3.png)
 
 
 # diff
 
-![img](/home/pimiento/yap/dot_git_4.png)
+![img](dot_git_4.png)
 
 
 # Commits
 
-![img](/home/pimiento/yap/commits_1.png)
+![img](commits_1.png)
 
 
 # Commits
 
-![img](/home/pimiento/yap/commits_2.png)
+![img](commits_2.png)
 
 
 # Commits
 
-![img](//home/pimiento/yap/commits_3.png)
+![img](commits_3.png)
 
 
 # Совместная разработка
 
-![img](/home/pimiento/yap/centralized_workflow.png)
+![img](centralized_workflow.png)
 
 
 # Совместная разработка
 
-![img](/home/pimiento/yap/small-team-flow.png)
+![img](small-team-flow.png)
 
 
 # Branches
 
-![img](/home/pimiento/yap/branch_1.png)
+![img](branch_1.png)
 
 
 # Merge
 
-![img](/home/pimiento/yap/merge_1.png)
+![img](merge_1.png)
 
 
 # Merge
 
-![img](/home/pimiento/yap/merge_2.png)
+![img](merge_2.png)
 
 
 # Merge
 
-![img](/home/pimiento/yap/workflow.png)
+![img](workflow.png)
 
 
 # Кто виноват?
@@ -473,7 +473,7 @@ import glob
 
 ## git blame
 
-![img](/home/pimiento/yap/who.jpg)
+![img](who.jpg)
 
 
 # Кто виноват?
@@ -499,17 +499,17 @@ git blame
 
 # git reset
 
-![img](/home/pimiento/yap/reset-soft.png)
+![img](reset-soft.png)
 
 
 # git reset
 
-![img](/home/pimiento/yap/reset-mixed.png)
+![img](reset-mixed.png)
 
 
 # git reset
 
-![img](/home/pimiento/yap/reset-hard.png)
+![img](reset-hard.png)
 
 
 # git checkout
@@ -557,4 +557,4 @@ git reset &#x2013;hard [branch] file
 
 ## Задавайте ваши вопросы
 
-![img](/home/pimiento/yap/questions.jpg)
+![img](questions.jpg)
