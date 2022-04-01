@@ -1,0 +1,413 @@
+#+TITLE: Командная строка. GIT
+#+EMAIL: @pvavilin
+#+AUTHOR: @pvavilin
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smallest]
+#+LATEX_HEADER: \usetheme{default}
+#+LATEX_HEADER: \usecolortheme{crane}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+LATEX_HEADER: \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{bg.jpeg}}
+#+OPTIONS: \n:t
+
+#+NAME: fold
+#+BEGIN_SRC sh :exports none
+  |fold -w 50 -s
+#+END_SRC
+* Timestamp
+** Что такое timestamp?
+   #+NAME: timestamp
+   #+BEGIN_SRC python :exports code
+     import time
+
+     print(time.time())
+   #+END_SRC
+
+* Timestamp
+** Что такое timestamp?
+   #+BEGIN_SRC python :results output :exports both
+     import time
+
+     print(time.time())
+   #+END_SRC
+
+   #+RESULTS:
+   : 1623444205.0582316
+
+* Timestamp
+** Что такое timestamp?
+    #+BEGIN_SRC python :results output :exports both
+      import time
+      from datetime import datetime
+
+      t = time.time()
+      print(
+        datetime.utcfromtimestamp(t)
+      )
+    #+END_SRC
+
+    #+RESULTS:
+    : 2021-06-11 20:44:12.467609
+
+* Timestamp
+** Что такое timestamp?
+   А что будет если вызвать такой код?
+
+   #+BEGIN_SRC python :exports code
+     from datetime import datetime
+
+     print(
+       datetime.utcfromtimestamp(0)
+     )
+   #+END_SRC
+
+* Timestamp
+** Что такое timestamp?
+
+   #+BEGIN_SRC python :exports both :results output
+     from datetime import datetime
+
+     print(
+       datetime.utcfromtimestamp(0)
+     )
+   #+END_SRC
+
+   #+RESULTS:
+   : 1970-01-01 00:00:00
+
+* UNIX
+
+** 1970.1.1
+   *Дата отсчёта UNIX-эпохи*
+
+   #+ATTR_LATEX: :width .5\textwidth
+   [[file:///home/pimiento/yap/thompson_n_ritchi.jpeg]]
+
+* UNIX
+
+  _Главные принципы UNIX_:
+
+
+  - Всё есть файл (ну или почти всё)
+  - Каждая программа должна уметь делать **только одно** и делать это хорошо!
+  **UNIX-way**
+
+* Shell
+  - /sh/
+  - /bash/
+  - /zsh/
+  - csh
+  - fish
+  - ksh
+  - tcsh
+
+* Основные команды Bash (sh, zsh)
+** ls
+   #+BEGIN_SRC sh :exports both :results output
+     ls ~/workdir/generate-password/
+   #+END_SRC
+
+   #+RESULTS:
+   : gen_pass
+   : README
+
+* Основные команды Bash (sh, zsh)
+** ls -l
+   #+BEGIN_SRC sh :exports both :results output :noweb strip-export
+     ls -l ~/workdir/generate-password/ <<fold>>
+   #+END_SRC
+
+   #+RESULTS:
+   : total 8
+   : drwxr-xr-x 3 pimiento pimiento 4096 Jun 12 00:18 gen_pass
+   : -rw-r--r-- 1 pimiento pimiento  420 Apr 13 15:08 README
+
+* Основные команды Bash (sh, zsh)
+** ls -a
+   #+ATTR_LATEX: :options basicstyle=\ttfamily\tiny
+   #+BEGIN_SRC sh :exports both :results output
+     ls -a ~/workdir/generate-password/
+   #+END_SRC
+
+   #+RESULTS:
+   : .
+   : ..
+   : gen_pass
+   : .git
+   : README
+* Основные команды Bash (sh, zsh)
+** which
+   #+BEGIN_SRC sh :exports both :results output
+     which python3
+   #+END_SRC
+
+   #+RESULTS:
+   : /usr/bin/python3
+* Основные команды Bash (sh, zsh)
+** mkdir
+   #+BEGIN_SRC sh :exports code
+     mkdir /tmp/notexist
+   #+END_SRC
+* Основные команды Bash (sh, zsh)
+** rm
+   #+BEGIN_SRC sh :exports code
+     rm -r /tmp/notexist
+   #+END_SRC
+* Основные команды Bash (sh, zsh)
+** grep
+   #+ATTR_LATEX: :options basicstyle=\ttfamily\tiny
+   #+BEGIN_SRC sh :exports both :results output :noweb strip-export
+     grep pimiento /etc/passwd <<fold>>
+   #+END_SRC
+
+   #+RESULTS:
+   : pimiento:x:1000:1000:Pavel Vavilin,,,:/home/pimiento:/bin/zsh
+
+* Основные команды Bash (sh, zsh)
+** cat
+   #+BEGIN_SRC sh :exports both :results output
+     cat /etc/lsb-release
+   #+END_SRC
+
+   #+RESULTS:
+   : DISTRIB_ID=LinuxMint
+   : DISTRIB_RELEASE=20.1
+   : DISTRIB_CODENAME=ulyssa
+   : DISTRIB_DESCRIPTION="Linux Mint 20.1 Ulyssa"
+
+* Основные команды Bash (sh, zsh)
+** перенаправление
+   - 0 => stdin
+   - 1 => stdout
+   - 2 => stderr
+
+* Основные команды Bash (sh, zsh)
+** перенаправление
+   #+ATTR_LATEX: :options basicstyle=\ttfamily\tiny
+   #+BEGIN_SRC sh :exports both :results output :noweb strip-export
+     rm -r /tmp/notexist 2> /tmp/rm.log
+     cat /tmp/rm.log <<fold>>
+   #+END_SRC
+
+   #+RESULTS:
+   : rm: cannot remove '/tmp/notexist': No such file or directory
+
+* Основные команды Bash (sh, zsh)
+** pipe
+   Выход одной команды мы можем подать на вход другой команде!
+   #+BEGIN_SRC sh :exports both :results output
+     echo "Привет Яндекс Практикум" | wc -c
+   #+END_SRC
+
+   #+RESULTS:
+   : 45
+
+   #+BEGIN_SRC sh :exports both :results output
+     cat /etc/lsb-release | grep RELEASE \
+         |cut -d '=' -f 2|cut -d '.' -f 1
+   #+END_SRC
+
+   #+RESULTS:
+   : 20
+* Основные команды Bash (sh, zsh)
+  #+BEGIN_SRC sh :exports code
+    cat /dev/urandom | hexdump -c
+  #+END_SRC
+** Время стать крутыми хакерами!
+   #+ATTR_LATEX: :width .35\textwidth
+   [[file:///home/pimiento/yap/matrix.png]]
+* UNIX это интересно!
+  #+ATTR_LATEX: :width .5\textwidth
+  [[file:///home/pimiento/yap/unix.jpg]]
+* #!/usr/bin/env python
+  Шебэнг? Шебанг? Shebang.
+** hello.py
+  #+BEGIN_SRC sh :exports code
+    #!/usr/bin/env python3
+
+    print("Hello World!")
+  #+END_SRC
+** $>
+  #+BEGIN_SRC sh :exports code
+    chmod +x hello.py
+  #+END_SRC
+* Что почитать?
+** Про UNIX идеологию в целом
+   Брайн Керниган, Роб Пайк «Программное окружение UNIX»
+** Bash
+   __«[[https://tldp.org/LDP/abs/html/][Advanced Bash-Scripting Guide]]»__. На OpenNet можно найти __[[https://www.opennet.ru/docs/RUS/bash_scripting_guide/index.html][перевод]]__
+
+* SSH
+  ( /В MS Windows чаще всего используют *PuTTY*/ )
+  \\
+
+  #+BEGIN_SRC sh :exports code
+    ssh user@ya.ru
+  #+END_SRC
+  \\
+
+  #+ATTR_LATEX: :options basicstyle=\ttfamily\tiny
+  #+BEGIN_SRC sh :exports cod
+    scp user@ya.ru:/answers.txt ./
+  #+END_SRC
+* VI
+  Редактор де-факто на всех UNIX-like системах
+  [[file:///home/pimiento/yap/vim.jpg]]
+* VI
+  #+BEGIN_CENTER
+  __[[https://yandex.ru/images/search?text=vim%20%D0%BC%D0%B5%D0%BC%D1%8B&from=tabbar][МЕМАСИКИ]]__
+  #+END_CENTER
+  \\
+  /шпаргалку по Vi/Vim пришлю после вебинара/
+* Linux. При чём тут GIT?
+  #+ATTR_LATEX: :width .4\textwidth
+  [[file:///home/pimiento/yap/linux.png]]
+* GIT
+  - [[https://github.com][GitHub]]
+  - [[https://bitbucket.org][BitBucket]]
+  - [[https://about.gitlab.com/][GitLab]]
+  - …
+* GIT
+** Время приключений!
+   #+ATTR_LATEX: :width .3\textwidth
+  [[file:///home/pimiento/yap/adventure_time.jpg]]
+
+* .gitignore
+** glob
+   #+BEGIN_SRC sh :exports both :results output
+     mkdir /tmp/yap
+     cd /tmp/yap
+     python3 -m venv venv
+     cd /tmp/yap/venv
+     ls lib/*/*/*/*.py | head -n 5
+   #+END_SRC
+
+   #+RESULTS:
+   : lib/python3.8/site-packages/pip/__init__.py
+   : lib/python3.8/site-packages/pip/__main__.py
+   : lib/python3.8/site-packages/pkg_resources/__init__.py
+   : lib/python3.8/site-packages/pkg_resources/py31compat.py
+   : lib/python3.8/site-packages/setuptools/archive_util.py
+
+* .gitignore
+** bash>                                                            :B_block:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :END:
+   #+NAME: glob
+   #+BEGIN_SRC sh :exports both :results output
+     man 7 glob |head -n5
+   #+END_SRC
+
+**   :B_ignoreheading:
+   :PROPERTIES:
+   :BEAMER_env: ignoreheading
+   :END:
+   #+RESULTS: glob
+
+** python>                                                          :B_block:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :END:
+   #+BEGIN_SRC python :exprots code
+     import glob
+   #+END_SRC
+
+* Что внутри .git
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:///home/pimiento/yap/dot_git_1.png]]
+* Что внутри .git
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:///home/pimiento/yap/dot_git_2.png]]
+* Что внутри .git
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:///home/pimiento/yap/dot_git_3.png]]
+* diff
+  #+ATTR_LATEX: :width 1\textwidth
+  [[file:///home/pimiento/yap/dot_git_4.png]]
+* Commits
+  [[file:///home/pimiento/yap/commits_1.png]]
+* Commits
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:///home/pimiento/yap/commits_2.png]]
+* Commits
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file://home/pimiento/yap/commits_3.png]]
+* Совместная разработка
+  #+ATTR_LATEX: :width .7\textwidth
+ [[file:///home/pimiento/yap/centralized_workflow.png]]
+* Совместная разработка
+  #+ATTR_LATEX: :width .4\textwidth
+  [[file:///home/pimiento/yap/small-team-flow.png]]
+* Branches
+  [[file:///home/pimiento/yap/branch_1.png]]
+* Merge
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:///home/pimiento/yap/merge_1.png]]
+* Merge
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:///home/pimiento/yap/merge_2.png]]
+* Merge
+   #+ATTR_LATEX: :width .8\textwidth
+   [[file:///home/pimiento/yap/workflow.png]]
+* Кто виноват?
+** git blame
+   #+ATTR_LATEX: :width .3\textwidth
+  [[file:///home/pimiento/yap/who.jpg]]
+* Кто виноват?
+** git blame
+   #+BEGIN_SRC sh :exports code
+     git blame
+   #+END_SRC
+* Откат изменений файла
+
+  \small{}
+  | HEAD                           | Снимок последнего коммита,    |
+  |                                | родитель следующего           |
+  |--------------------------------+-------------------------------|
+  | Индекс (Index)                 | Снимок следующего намеченного |
+  |                                | коммита                       |
+  |--------------------------------+-------------------------------|
+  | Рабочий каталог (Working tree) | Песочница                     |
+* git reset
+  #+ATTR_LATEX: :width .5\textwidth
+  [[file:///home/pimiento/yap/reset-soft.png]]
+
+* git reset
+  #+ATTR_LATEX: :width .5\textwidth
+  [[file:///home/pimiento/yap/reset-mixed.png]]
+
+* git reset
+  #+ATTR_LATEX: :width .5\textwidth
+  [[file:///home/pimiento/yap/reset-hard.png]]
+
+* git checkout
+** git reset
+   #+BEGIN_CENTER
+   git reset --hard [branch] file
+   #+END_CENTER
+   Так не может быть, потому что /git reset/ перемещает указатель HEAD, а он не может
+   указывать на несколько мест одновременно.
+
+* git checkout
+** git checkout
+   #+BEGIN_EXAMPLE
+   git checkout [ --patch ] <hash> -- file
+   #+END_EXAMPLE
+   Замещает содержимое файла в текущем HEAD на содержимое из коммита <hash>.
+* GIT. что почитать?
+** Классика
+   #+BEGIN_CENTER
+   [[https://git-scm.com/book/en/v2][GIT]]
+   #+END_CENTER
+** Советую (english)
+   #+BEGIN_CENTER
+   [[https://vk.com/doc269223643_507620347?hash=f0724cb386dcc4da4a&dl=62be737793f7e270db][GIT Concepts and Workflows]]
+   #+END_CENTER
+* Спасибо!
+** Задавайте ваши вопросы
+   #+ATTR_LATEX: :width .45\textwidth
+   [[file:///home/pimiento/yap/questions.jpg]]
