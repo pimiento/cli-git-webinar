@@ -21,7 +21,7 @@ import time
 print(time.time())
 ```
 
-    1648837050.116224
+    1648837131.808729
 
 
 # Timestamp
@@ -39,7 +39,7 @@ print(
 )
 ```
 
-    2022-04-01 18:17:30.158058
+    2022-04-01 18:18:51.868852
 
 
 # Timestamp
@@ -381,14 +381,14 @@ ls lib/*/*/*/*.py | head -n 5
 # .gitignore
 
 
-## bash>     :B_block:
+## bash>
 
 ```sh
 man 7 glob |head -n5
 ```
 
 
-##       :B_ignoreheading:
+##
 
     GLOB(7)                    Linux Programmer's Manual                   GLOB(7)
 
@@ -396,7 +396,7 @@ man 7 glob |head -n5
            glob - globbing pathnames
 
 
-## python>     :B_block:
+## python>
 
 ```python
 import glob
