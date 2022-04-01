@@ -11,7 +11,7 @@
 #+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LATEX_HEADER: \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{bg.jpeg}}
-#+OPTIONS: \n:t
+#+OPTIONS: \n:t toc:nil
 
 #+NAME: fold
 #+BEGIN_SRC sh :exports none
