@@ -1,0 +1,367 @@
+#+OPTIONS: \n:t
+* Bash
+** echo
+   Выведет на /stdout/ текст
+   #+BEGIN_SRC sh
+   echo "Hello World"
+   #+END_SRC
+   В Python:
+   #+BEGIN_SRC python
+   print('Hello World')
+   #+END_SRC
+** ls
+
+   #+CAPTION: Выводит содержимое указанное директории и/или информацию о файлах. Ключи можно комбинировать. Поддерживает глобы, когда указывается не полное название файла, а используется $*$. Про глобы [[glob][дальше]].
+   #+NAME: ls
+   #+LABEL: src:ls
+   #+BEGIN_SRC sh
+   ls -la
+   #+END_SRC
+
+
+   Ключи:
+   \\
+   - -l :: выводит подробную информацию
+   - -a :: выводит информацию о скрытых файлах тоже ($.$ означает текущую директорию, $..$ означает родительскую директорию)
+   В Python можно использовать
+   #+BEGIN_SRC python
+   import os
+
+   os.listdir('.')  # Вывести всё содержимое текущей директории
+   #+END_SRC
+** pwd
+   Узнать текущую рабочую директорию
+   #+BEGIN_SRC sh
+   pwd
+   #+END_SRC
+
+   В Python
+   #+BEGIN_SRC python
+   import os
+
+   os.getcwd()
+   #+END_SRC
+** cd
+   /Change Directory/. Перейти в другую директорию.
+   #+BEGIN_SRC sh
+   cd /tmp
+   #+END_SRC
+   Перейти на уровень выше
+   #+BEGIN_SRC sh
+   cd ..
+   #+END_SRC
+   Вернуться назад, откуда перешли в текущую директорию
+   #+BEGIN_SRC sh
+   cd -
+   #+END_SRC
+   В Python можно использовать
+   #+BEGIN_SRC python
+   import os
+
+   os.chdir('..')
+   #+END_SRC
+** mkdir
+   Создать новую директорию.
+   #+BEGIN_SRC sh
+   mkdir /tmp/dirname
+   #+END_SRC
+   Создать директорию и все директории пути
+   #+BEGIN_SRC sh
+   mkdir -p /tmp/notexist/new_directory/target
+   # создаст /tmp/notexist/,
+   #         /tmp/notexist/new_directory/,
+   #         /tmp/notexist/new_directory/target
+   #+END_SRC
+   В Python
+   #+BEGIN_SRC python
+   import os
+
+   os.mkdir('/tmp/notexist')
+   #+END_SRC
+** rm
+   Удалить файл или директорию.
+   #+BEGIN_CENTER
+   В Bash нет понятия корзины — файлы удаляются насовсем!
+   #+END_CENTER
+   #+BEGIN_SRC sh
+   rm /tmp/file.txt
+   #+END_SRC
+   Чтобы удалить директорию, надо использовать флаг $-r$ то есть удалить содержимое директории рекурсивно.
+   #+BEGIN_SRC sh
+   rm -r /tmp/dir
+   #+END_SRC
+   В Python
+   #+BEGIN_SRC python
+   import os
+
+   os.unlink('/path/to/file')  # или os.remove
+   os.rmdir('/path/to/dir')
+   #+END_SRC
+** mv
+   Переместить (переименовать) файл или директорию
+   #+BEGIN_SRC sh
+   # переименует файл
+   mv homework.py homework.py.backup
+   # переместить все файлы с суффиксом .py в директорию
+   mv *.py /path/to/dir
+   #+END_SRC
+   В Python (для переноса множества файлов вам придётся написать цикл, который будет проходить по этим файлам)
+   #+BEGIN_SRC python
+   import os
+
+   os.replace('/path/to/homework.py', '/path/to/homework.py.backup')
+   #+END_SRC
+** cp
+   /Copy/. Копировать файл или директорию.
+   #+BEGIN_SRC sh
+   # Создаст копию файла homework.py
+   cp homework.py homework.py.backup
+   #+END_SRC
+   Чтобы копировать директорию, нужен флаг $-r$ то есть копировать рекурсивно
+   #+BEGIN_SRC sh
+   cp -r /tmp/dir /tmp/new_dir
+   #+END_SRC
+** cat
+   Вывести содержимое файла/ов на stdout.
+   #+BEGIN_SRC sh
+   cat homework.py
+   #+END_SRC
+   В Python
+   #+BEGIN_SRC python
+   with open('/path/to/homework.py', 'r') as fd:
+       print(fd.read())
+   #+END_SRC
+** head
+   Вывести первые n (по умолчанию 10) строк из файла
+   #+BEGIN_SRC sh
+   head -n15 homework.py
+   #+END_SRC
+   В Python
+   #+BEGIN_SRC python
+   with open('/path/to/file', 'r') as fd:
+       fd.readlines(hint=15)
+   #+END_SRC
+** tail
+   Вывести последние n (по умолчанию 10) строк из файла
+   #+BEGIN_SRC sh
+   # Прочитать последние 15 строк
+   tail -n15 /path/to/homework.py
+   #+END_SRC
+   У tail есть очень полезная функция: читать изменения в файле. То есть, он будет обновлять файл если в него что-нибудь будет дозаписываться в этот момент.
+   #+BEGIN_SRC sh
+   tail -f /path/to/file
+   #+END_SRC
+   В Python (трудно реализовать не прочитав весь файл, здесь читается весь файл целиком)
+   #+BEGIN_SRC python
+   with open('/path/to/homework.py', 'r') as fd:
+       result = '\n'.join(fd.read().split('\n')[-15:])
+   #+END_SRC
+** less / more
+   "Читалка" текстовых файлов с возможностью листать текст взад-вепрёд стрелками клавиатуры
+   #+BEGIN_SRC sh
+   less homework.py
+   # может быть more а не less
+   more homework.py
+   #+END_SRC
+** grep
+   Поиск подстроки в файле
+   #+BEGIN_SRC sh
+   grep class homework.py
+   #+END_SRC
+   grep -n вернёт результат с указанием номера строки, где встретилась искомая подстрока
+   #+BEGIN_SRC sh
+   grep -n class homework.py
+   #+END_SRC
+
+   Можно искать по многим файлам
+   #+BEGIN_SRC sh
+   # ключ -l вернёт только название файла, где встретилась искомая подстрока
+   grep -l class venv/lib/python3.8/site-packages/*/*.py
+   #+END_SRC
+
+
+** chmod
+   Команда для управления правами доступа к файлу. Может быть полезна для добавления файлу прав на запуск, делает файл исполняемым скриптом.
+   #+BEGIN_SRC sh
+   chmod +x homework.py
+   # Теперь homework.py можно запустить (если указан shebang)
+   ./homework.py
+   #+END_SRC
+
+** which
+   Покажет путь, откуда будет вызываться исполняемый файл. Полезно, чтобы проверить будет ли вызываться Python-интерпретатор из глобально окружения или из вашего venv.
+   #+BEGIN_SRC python
+   # вернёт один путь
+   which python
+   # активируем venv и получим другой путь
+   source venv/Scripts/activate
+   which python
+   #+END_SRC
+** date
+   Вывести текущую дату
+   #+BEGIN_SRC sh
+   date
+   #+END_SRC
+
+   #+BEGIN_SRC sh
+   date +"%d-%m-%Y"
+   #+END_SRC
+** history
+   Посмотреть историю команд, которые вы вызвали
+   #+BEGIN_SRC sh
+   history
+   #+END_SRC
+
+   #+BEGIN_EXAMPLE
+    1  sudo apt install cmake
+    2  pip3 install sklearn pandas matplotlib graphviz sympy scipy numpy --user
+    3  apt search graphviz
+    4  sudo apt update
+    5  sudo apt install graphviz
+    6  pip3 install seaborn --user
+    7  pip3 install xgboost --user
+   #+END_EXAMPLE
+
+   Можно вызвать повторно команду из истории, указав номер команды
+   #+BEGIN_SRC sh
+   # Вызовет команду под номером 4 в истории: sudo apt update
+   !4
+   #+END_SRC
+
+** man
+   Документация по командам
+   #+BEGIN_SRC sh
+   # Выведет документацию на man
+   man man
+   # Выведет документацию на tail
+   man tail
+   #+END_SRC
+   В Python
+   #+BEGIN_SRC python
+   help(help)
+   #+END_SRC
+** apropos
+   Поиск по документации. Находит статьи, которые можно открыть через /man/.
+   #+BEGIN_SRC sh
+   apropos python
+   #+END_SRC
+** vi
+   Стандартный в \ast{}NIX текстовый редактор Vi. Возможно, есть vim.
+   #+BEGIN_SRC sh
+   vi homework.py
+   # или
+   vim homework.py
+   #+END_SRC
+** nano
+   user-friendly текстовый редактор
+   #+BEGIN_SRC sh
+   nano -w homework.py
+   #+END_SRC
+** ssh
+   Позволяет подключиться к удалённой машине, используя защищённый протокол
+   #+BEGIN_SRC sh
+   # Подключиться, используя hostname
+   ssh username@hostname.domain
+   # Подключиться, используя IP-address
+   ssh username@192.168.0.1
+   #+END_SRC
+   В Python есть библиотека [[https://www.fabfile.org/][fabric]]
+** scp
+   Скопировать файлы с удалённой машины или отправить на удалённую машину, используя защищённый протокол
+   #+BEGIN_SRC sh
+   scp homework.py username@hostname.domain:/path/to/dir
+   #+END_SRC
+* Фишки bash (и других \ast{}NIX-шеллов)
+  Почитать про идеологию UNIX и освоить базовое программирование на Bash можно в книге [[https://www.books.ru/books/unix-programmnoe-okruzhenie-82361/][Программное окружение UNIX]].
+** перенаправление
+   В \ast{}NIX-системах есть понятие файловых дескрипторов. По умолчанию, каждый запущенный процесс получает от ядра операционной системы три обязательных дескриптора:
+   - stdin :: с индексом 0. Это стандартный ввод приложения, отсюда он может читать то, что пользователь вводит с клавиатуры, например.
+   - stdout :: с индексом 1. Это стандартный вывод приложения, сюда выводятся данные через echo или print в Python.
+   - stderr :: с индексом 2. Это стандартный вывод для сообщений об ошибках или предупреждениях. При вызове программы по умолчанию stderr выводится туда же куда и stdout.
+   Эти дескрипторы можно перенаправлять. Например, сохранить сообщения об ошибках в отдельном log-файле
+   #+BEGIN_SRC sh
+   pytest 2> homework.log
+   # Затем мы можем прочитать вывод об ошибках,
+   # используя less или more
+   less homework.log
+   #+END_SRC
+** pipe
+   В \ast{}NIX-системах можно "склеивать" программы друг с другом. По умолчанию, на вход следующей программе подаётся stdout предыдущей.
+   #+BEGIN_SRC sh
+   # Вернуть 15-ую строчку файла
+   tail -n15 homework.py |head -n1
+   #+END_SRC
+
+   #+BEGIN_SRC sh
+   # посчитает количество строк в файле
+   cat homework.py | wc -l
+   #+END_SRC
+
+** glob
+   Позволяет указывать множество файлов и/или директорий не перечисляя каждый. Используется в правилах /.gitignore/.
+   - * :: ноль или сколько угодно символов
+   - ? :: ноль или один символ
+   - [abc] :: один из этих трёх символов
+   - [a-zA-Z] :: один из символов алфавита
+   - [0-9] :: одна из цифр
+   Подробнее почитать про синтаксис glob можно вызвав команду $man 7 glob$
+\\
+   Перенести все .py файлы в нужную директорию
+    #+BEGIN_SRC sh
+    mv *.py /path/to/python_scripts/
+    #+END_SRC
+\\
+   Удалить все *.pyc и *.pyo файлы
+   #+BEGIN_SRC sh
+   rm *.py[co]
+   #+END_SRC
+
+** shebang
+   Указывает bash как именно надо запустить скрипт. Прописывается обязательно в самой первой строке файла. Например, чтобы сделать файл скриптом на Python и затем запускать его, надо добавить первой строкой такой shebang.
+   #+BEGIN_SRC python
+   #!/usr/bin/python
+   # укажите там путь до вашего интерпретатора Python
+   # в Linux можно использовать #!/usr/bin/env python
+   #+END_SRC
+   Узанть путь до вашего интерпретатора можно, используя команду [[which][which]]
+* Vi
+  Vi является стандартным текстовым редактором в \ast{}NIX-системах, поэтому он гарантированно будет, например, на Linux-сервере.
+** запуск vi
+   #+BEGIN_SRC sh
+   vi /path/to/file
+   #+END_SRC
+** режимы в vi
+   В vi есть два режима:
+   - режим команд. изначально вы попадаете именно в него. всё, что вы будете печатать на клавиатуре, будет восприниматься как команды, а не текст.
+   - режим ввода. об этом режиме сигнализирует большая надпись *--INSERT--* в левом нижнем углу редактора.
+   Чтобы войти в режим ввода нажмите *i*. Чтобы выйти из режима ввода нажмите *Esc*.
+** редактирование текста в vi
+   можете передвигать курсор стрелочками клавиатуры и вводить текст в режиме ввода.
+** сохранить файл
+   Выйдите в режим команд, если вы были в режиме ввода текста, нажам клавишу *ESC*. Наберите команду (в нижнем левом углу будет печататься команда)
+   #+BEGIN_EXAMPLE
+   :w
+   #+END_EXAMPLE
+   vi сообщит, что файл был записан (если у вас есть права на запись файла).
+** выход из vi
+   Выйдите в режим команд, если вы были в режиме ввода текста, и наберите команду
+   #+BEGIN_EXAMPLE
+   :q
+   #+END_EXAMPLE
+   Если вы внесли изменения, но забыли сохранить файл перед выходом, то vi сообщит вам об этом и не закроется. [[сохранить файл][Сохраните файл]] и повторите команду выхода;
+   \\
+   или закройте файл принудительно, без сохранения
+   #+BEGIN_EXAMPLE
+   :q!
+   #+END_EXAMPLE
+   \\
+   или можно совместить команды сохранения и выхода
+   #+BEGIN_EXAMPLE
+   :wq
+   #+END_EXAMPLE
+** поиск в vi
+   Для поиска подстроки необходимо перейти в режим команд и вызвать команду поиска, нажав
+   #+BEGIN_EXAMPLE
+   /
+   #+END_EXAMPLE
+   вы увидите в нижнем левом углу приглашение (символ */*) на ввод подстроки, которую вы хотите найти в тексте. Вводите текст и нажимайте *Enter*. Для перехода к следующему совпадению, нажимайте *n*, для перехода к предыдущему совпадению *N*
